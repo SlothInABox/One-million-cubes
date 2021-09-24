@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 
         // Convert cube prefab into an entity
         cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
-        //cubeEntity = MakeEntity();
         CreateCubes();
     }
 
@@ -70,27 +69,5 @@ public class GameManager : MonoBehaviour
             }
         }
         cubeArray.Dispose();
-    }
-
-    private Entity MakeEntity()
-    {
-        EntityArchetype cubeArchetype = entityManager.CreateArchetype(
-            typeof(Translation),
-            typeof(Rotation),
-            typeof(RenderMesh),
-            typeof(RenderBounds),
-            typeof(LocalToWorld),
-            typeof(CubeComponent)
-            );
-
-        Entity cubeEntity = entityManager.CreateEntity(cubeArchetype);
-
-        entityManager.AddSharedComponentData(cubeEntity, new RenderMesh
-        {
-            mesh = cubeMesh,
-            material = cubeMaterial
-        });
-
-       return cubeEntity;
     }
 }
