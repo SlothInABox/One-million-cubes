@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < numberOfCubes; i++)
         {
             // Make a line of cubes
-            float3 position = new float3(i + 0.5f, 0, 0);
+            float3 position = new float3(-numberOfCubes / 2 + i + 0.5f, 0, 0);
 
             Entity cubeInstance = cubeArray[i];
 

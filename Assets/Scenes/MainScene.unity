@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3566640540054789546, guid: 4a5877c17f85bc6469f9a2bb60c2ddde, type: 3}
-  numberOfCubes: 10
+  numberOfCubes: 1000000
   moveSpeed: 1
-  moveFrequency: 10
-  moveMagnitude: 0.5
+  moveFrequency: 5
+  moveMagnitude: 2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
