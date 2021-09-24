@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using Unity.Transforms;
 using Unity.Rendering;
+using Unity.Mathematics;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,11 +17,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private int numberOfCubes;
-    [SerializeField] private Vector3 positionRange;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveFrequency;
+    [SerializeField] private float moveMagnitude;
 
-    public static GameManager GetInstance()
+    public static GameManager Instance
     {
-        return instance;
+        get
+        {
+            return instance;
+        }
     }
 
     private void Awake()
@@ -45,14 +51,18 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < numberOfCubes; i++)
         {
-            Vector3 position = new Vector3(
-                Random.Range(-positionRange.x, positionRange.x),
-                Random.Range(-positionRange.y, positionRange.y),
-                Random.Range(-positionRange.z, positionRange.z));
+            // Make a line of cubes
+            float3 position = new float3(i + 0.5f, 0, 0);
 
             Entity cubeInstance = cubeArray[i];
 
             entityManager.SetComponentData(cubeInstance, new Translation { Value = position });
+            entityManager.SetComponentData(cubeInstance, new CubeComponent
+            {
+                moveSpeed = moveSpeed,
+                moveFrequency = moveFrequency,
+                moveMagnitude = moveMagnitude
+            });
         }
 
         cubeArray.Dispose();

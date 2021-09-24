@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
+using Unity.Mathematics;
 
 public class MoveSystem : ComponentSystem
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref Translation translation) =>
+        Entities.ForEach((ref Translation translation, ref CubeComponent cubeComponent) =>
         {
-            translation.Value.y += 1f * Time.DeltaTime;
+            translation.Value.x += cubeComponent.moveSpeed * Time.DeltaTime;
+            translation.Value.y = Mathf.Sin(translation.Value.x * cubeComponent.moveFrequency) * cubeComponent.moveMagnitude;
         });
     }
 }
