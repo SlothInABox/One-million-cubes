@@ -167,10 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3566640540054789546, guid: 4a5877c17f85bc6469f9a2bb60c2ddde, type: 3}
-  numberOfCubes: 1000000
-  moveSpeed: 1
-  moveFrequency: 5
-  moveMagnitude: 2
+  cubeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  cubeMaterial: {fileID: 2100000, guid: 6138427c81eaecf469e1b34ee3075b4f, type: 2}
+  moveFrequency: 2
+  moveMagnitude: 1
+  waveWidth: 1000
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +318,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -340,8 +341,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalRotation: {x: -0.06991453, y: -0.8058822, z: 0.09717475, w: -0.57984746}
+  m_LocalPosition: {x: -63.56475, y: 3.7817495, z: 154.91003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
