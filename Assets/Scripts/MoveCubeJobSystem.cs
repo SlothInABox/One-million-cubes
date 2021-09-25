@@ -5,24 +5,17 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
 
-public class MoveCubeJobSystem : JobComponentSystem
+public class MoveCubeJobSystem : SystemBase
 {
-    // Use burst compiler automatically
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    protected override void OnUpdate()
     {
         float time = (float)Time.ElapsedTime;
-        GameManager gameManager = GameManager.Instance;
-        // Get current frequency and magnitude from GameManager. These values shouldn't change when built but they are left editable for testing.
-        float frequency = gameManager.moveFrequency;
-        float amplitude = gameManager.moveMagnitude;
 
         // Iterate over all cube entities
-        JobHandle jobHandle = Entities.ForEach((ref Translation translation, in CubeComponent cubeComponent) =>
+        Entities.ForEach((ref Translation translation, in WaveDataComponent waveData) =>
         {
             // Change y coordinate of cube entity to make cubes follow sinusoidal standing wave pattern
-            translation.Value.y = Mathf.Sin(translation.Value.x + frequency * time) * amplitude;
-        }).Schedule(inputDeps);
-
-        return jobHandle;
+            translation.Value.y = Mathf.Sin(translation.Value.x + waveData.frequency * time) * waveData.amplitude;
+        }).ScheduleParallel();
     }
 }
